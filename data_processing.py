@@ -1,7 +1,20 @@
 import csv, os
 
-__location__ = os.path.realpath(
-    os.path.join(os.getcwd(), os.path.dirname(__file__)))
+class ReadCSV:
+    def __init__(self, filename) -> None:
+        self.__list = []
+        self.__location__ = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
+        with open(os.path.join(self.__location__, filename + '.csv')) as f:
+            rows = csv.DictReader(f)
+            for r in rows:
+                self.__list.append(dict(r))
+
+    @property
+    def fetch(self):
+        return self.__list
+    
+    def __str__(self) -> str:
+        return str(self.__list)
 
 class DB:
     def __init__(self):
@@ -96,7 +109,11 @@ class Table:
                 aggregate_val_list.append(aggregate_val)
             pivot_table.append([item, aggregate_val_list])
         return pivot_table
+    
+    def insert_row(self, dict):
+        self.table.append(dict)
 
     def __str__(self):
         return self.table_name + ':' + str(self.table)
 
+# the code for other stuffs is in main.py
