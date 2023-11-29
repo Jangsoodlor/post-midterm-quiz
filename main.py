@@ -26,7 +26,5 @@ table.insert_row(dict)
 table5 = table.filter(lambda x: x['Genre'] == 'Fantasy').aggregate(lambda y: len(y), 'Film')
 print(f'The number of fantasy movie after updating is {table5}')
 
-table.update_row('Film', 'A Serious Man', 'Year', 2022)
-
-table6 = table.filter(lambda x: x['Film'] == 'A Serious Man')
+table6 = table.update_row('Film', 'A Serious Man', 'Year', 2022).filter(lambda x: x['Film'] == 'A Serious Man')
 print(table6)
