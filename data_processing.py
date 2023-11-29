@@ -113,7 +113,16 @@ class Table:
     def insert_row(self, dict):
         self.table.append(dict)
 
+    def update_row(self, primary_attribute, primary_attribute_value, update_attribute, update_value):
+        for i in self.table:
+            if i[primary_attribute] == primary_attribute_value:
+                i[update_attribute] == update_value
+        
     def __str__(self):
         return self.table_name + ':' + str(self.table)
 
 # the code for other stuffs is in main.py
+if __name__ == '__main__':
+    table1 = Table('test', {'Film' : 'test', 'Year': '2022'})
+    table2 = table1.update_row('Film', 'Test', 'Year', '2000')
+    print(table2)
